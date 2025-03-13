@@ -38,6 +38,7 @@ h1 {
 	border: 15px solid #dde;
 	position: relative;
 	overflow: hidden;
+	-webkit-transition: transform 8s ease-out;  /* Prefijo para navegadores antiguos */
 	transition: transform 5s ease-out; /* Añadimos el tiempo de transición aquí */
 }
 
@@ -59,58 +60,66 @@ h1 {
 	left: 135px;
 }
 
-.container .one {
-	background-color: #3f51b5;
-	left: 50%;
+.container .uno {
+    background-color: #3f51b5;
+    left: 50%;
 }
 
-.container .two {
-	background-color: #ff9800;
-	transform: rotate(45deg);
+.container .dos {
+    background-color: #ff9800;
+    transform: rotate(45deg);
 }
 
-.container .three {
-	background-color: #e91e63;
-	transform: rotate(90deg);
+.container .tres {
+    background-color: #e91e63;
+    transform: rotate(90deg);
 }
 
-.container .four {
-	background-color: #4caf50;
-	transform: rotate(135deg);
+.container .cuatro {
+    background-color: #4caf50;
+    transform: rotate(135deg);
 }
 
-.container .five {
-	background-color: #009688;
-	transform: rotate(180deg);
+.container .cinco {
+    background-color: #009688;
+    transform: rotate(180deg);
 }
 
-.container .six {
-	background-color: #795548;
-	transform: rotate(225deg);
+.container .seis {
+    background-color: #795548;
+    transform: rotate(225deg);
 }
 
-.container .seven {
-	background-color: #9c27b0;
-	transform: rotate(270deg);
+.container .siete {
+    background-color: #9c27b0;
+    transform: rotate(270deg);
 }
 
-.container .eight {
-	background-color: #f44336;
-	transform: rotate(315deg);
+.container .ocho {
+    background-color: #f44336;
+    transform: rotate(315deg);
 }
+
 
 .arrow {
 	position: absolute;
-	top: 9%;
+	top: 12%;
 	left: 50%;
 	transform: translateX(-50%);
 	color: #fff;
 }
 
 .arrow::before {
-	content: "\1F817";
-	font-size: 50px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid rgb(255, 255, 255);
+    display: inline-block;
+    font-size: 50px;
 }
+
 
 #spin {
 	position: absolute;
@@ -143,4 +152,55 @@ h1 {
 	font-weight: bold;
 	color: #fff;
 	font-family: sans-serif;
+}
+/* Media Queries para ajustar el diseño en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    body{
+		border: solid red 2px;
+	}
+	.container {
+        width: 500px;
+        height: 500px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #spin {
+        width: 60px;
+        height: 60px;
+        font-size: 0.5rem;
+    }
+
+    #number-display {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+	body{
+		border: solid rgb(0, 174, 255) 2px;
+	}
+    .container {
+		width: 500px;
+        height: 500px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+		width: auto;
+		height: auto;
+    }
+
+    #spin {
+        width: 50px;
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    #number-display {
+		margin-top: 60%;
+        font-size: 3rem;
+    }
 }
