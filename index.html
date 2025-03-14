@@ -9,7 +9,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f1f1f1;
+            background-color: #e7e4e9;
         }
 
         .game-container {
@@ -60,8 +60,23 @@
         /* Estilo para el número que se mostrará */
         #number-display {
             margin-top: 20px;
-            font-size: 30px;
+            font-size: 3.5rem;
             font-weight: bold;
+        }
+        @media screen and (max-width: 1024px) {
+            body{
+                border: solid rgb(60, 255, 0) 2px;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            body{
+                border: solid red 2px;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            body{
+                border: solid rgb(0, 26, 255) 2px;
+            }
         }
     </style>
 </head>
