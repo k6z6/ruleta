@@ -1,31 +1,112 @@
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-	<title>Ruleta de la Suerte</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta de la Suerte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo para la ruleta */
+        #ruleta {
+            width: 70%;
+            max-width: 500px;
+            height: auto;
+            transition: transform 8s ease-out;
+            border-radius: 50%;  /* Hacer que la ruleta sea circular */
+            overflow: hidden;
+            z-index: 1;  /* Aseguramos que la ruleta esté por debajo del texto 'mas' */
+        }
+
+        /* Estilo para el texto 'mas' */
+        .mas {
+        position: absolute;
+        top: 7%; /* Asegura que el triángulo esté debajo del h1, pero ajustable según tu necesidad */
+        left: 50%;  /* Centrado horizontalmente */
+        transform: translateX(-50%);  /* Alineación perfecta */
+        z-index: 10;  /* Aseguramos que esté sobre otros elementos */
+        border-left: 40px solid transparent;  /* Tamaño más pequeño del triángulo */
+        border-right: 40px solid transparent; /* Tamaño más pequeño del triángulo */
+        border-top: 40px solid rgb(0, 0, 0);  /* El color y tamaño del triángulo */
+
+}
+
+        /* Estilo para el botón */
+        #spin {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Estilo para el número que se mostrará */
+        #number-display {
+            margin-top: 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <!-- Título de la ruleta -->
-	<h1>Ruleta de la Suerte</h1>
+    <h1>Ruleta de la Suerte</h1>
+    <div class="game-container">
+        <!-- La imagen de la ruleta -->
+        <img id="ruleta" src="img/a.png" alt="Ruleta" />
+        
+        <!-- Texto 'mas' sobre la ruleta -->
+        <div class="mas"></div>
 
-	<div class="game-container">
-		<button id="spin">Rueda</button>
-		<span class="arrow"></span>
-		<div class="container">
-			<div class="uno"></div>
-			<div class="dos"></div>
-			<div class="tres"></div>
-			<div class="cuatro"></div>
-			<div class="cinco"></div>
-			<div class="seis"></div>
-			<div class="siete"></div>
-			<div class="ocho"></div>
-		</div>
-		
-		<div id="number-display">000</div> <!-- Aquí se mostrará el número aleatorio -->
-	</div>
-	
-	<script src="script.js"></script>
+        <!-- Botón para girar -->
+        <button id="spin">Girar</button>
+
+        <!-- Muestra el número aleatorio -->
+        <div id="number-display">000</div>
+    </div>
+
+    <script>
+        // Obtener elementos
+        let ruleta = document.getElementById("ruleta");
+        let btn = document.getElementById("spin");
+        let numberDisplay = document.getElementById("number-display");
+
+        btn.onclick = function () {
+            // Generar un número aleatorio entre 0 y 999
+            let number = Math.floor(Math.random() * 1000);
+
+            // Establecer la rotación de la ruleta con un número aleatorio
+            let rotationDegree = Math.floor(Math.random() * 360) + 3600; // Gira al menos 10 veces (3600 grados)
+
+            // Aplicar la rotación a la imagen de la ruleta
+            ruleta.style.transform = "rotate(" + rotationDegree + "deg)";
+
+            // Después de 8 segundos (cuando la ruleta se detenga), mostrar el número
+            setTimeout(function() {
+                numberDisplay.textContent = number.toString().padStart(3, '0');
+            }, 8000); // 8000ms = 8 segundos (cuando la animación termina)
+
+            // Después de 20 segundos, recargar la página
+            setTimeout(function() {
+                location.reload(); // Recargar la página
+            }, 20000); // 20000ms = 20 segundos (tiempo después de la animación)
+        };
+    </script>
 </body>
 </html>
